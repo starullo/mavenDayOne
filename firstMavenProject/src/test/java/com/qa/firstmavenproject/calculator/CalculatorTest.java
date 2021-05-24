@@ -24,6 +24,7 @@ public class CalculatorTest {
 		assertNotEquals(11, res);
 	}
 	
+	@Test
 	public void multiplyTest() {
 		double res = Calculator.multiply(2, 5);
 		assertEquals(10, res);
@@ -31,6 +32,7 @@ public class CalculatorTest {
 		assertNotEquals(11, res);
 	}
 	
+	@Test
 	public void divideTest() {
 		double res = Calculator.divide(22, 11);
 		assertEquals(2, res);
@@ -38,6 +40,7 @@ public class CalculatorTest {
 		assertNotEquals(12, res);
 	}
 	
+	@Test
 	public void modTest() {
 		double res = Calculator.mod(20, 12);
 		assertEquals(8, res);
