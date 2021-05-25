@@ -12,16 +12,39 @@ public class Runner {
 		int num = 0;
 		boolean flag = true;
 		
-		do {
+		while (flag) {
 			System.out.println("Please choose a calculation to perform:\n");
 			System.out.println("1: Addition \n2: Subtraction \n3: Multiplication \n4: Division \n5: Modulus\n6: Exit program");
-			num = Integer.parseInt(scanner.nextLine());
-			if (num > 0 && num < 6) {
-				subMenuHelper(num);
-			} else {
+			
+			String selection = scanner.nextLine();
+			
+			switch(selection) {
+			case "1":
+				subMenuHelper(Integer.parseInt(selection));
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+				break;
+			case "6":
 				flag = false;
+				break;
+			default:
+				flag = true;
 			}
-		} while (flag);
+//			
+//			if (scanner.nextLine().length() == 0) {
+//				num = 7;
+//			} else if ()
+//			
+//			if (num > 0 && num < 6) {
+//				subMenuHelper(num);
+//			} else if (num == 6) {
+//				flag = false;
+//			} else if (num == 7) {
+//				flag = true;
+//			}
+		} 
 		System.out.println("Exiting program");
 		scanner.close();
 	}
@@ -85,5 +108,6 @@ public class Runner {
 			}
 			
 			System.out.println(num1 + " " + operator + " " + num2 + "\n= " + answer);
+			System.out.println(" ");
 	}
 }
