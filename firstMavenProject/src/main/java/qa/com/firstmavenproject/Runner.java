@@ -20,11 +20,11 @@ public class Runner {
 			
 			switch(selection) {
 			case "1":
-				subMenuHelper(Integer.parseInt(selection));
 			case "2":
 			case "3":
 			case "4":
 			case "5":
+				subMenuHelper(Integer.parseInt(selection));
 				break;
 			case "6":
 				flag = false;
