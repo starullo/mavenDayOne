@@ -1,5 +1,8 @@
 package qa.com.firstmavenproject.calculator;
 
+import java.lang.Class;
+import java.util.InputMismatchException;
+
 public class Calculator {
 	
 	public static double add(int a, int b) {

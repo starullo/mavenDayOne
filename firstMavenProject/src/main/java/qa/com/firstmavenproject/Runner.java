@@ -1,5 +1,6 @@
 package qa.com.firstmavenproject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import qa.com.firstmavenproject.calculator.Calculator;
@@ -12,7 +13,7 @@ public class Runner {
 		int num = 0;
 		boolean flag = true;
 		
-		while (flag) {
+		do {
 			System.out.println("Please choose a calculation to perform:\n");
 			System.out.println("1: Addition \n2: Subtraction \n3: Multiplication \n4: Division \n5: Modulus\n6: Exit program");
 			
@@ -24,7 +25,7 @@ public class Runner {
 			case "3":
 			case "4":
 			case "5":
-				subMenuHelper(Integer.parseInt(selection));
+				subMenuHelper(selection);
 				break;
 			case "6":
 				flag = false;
@@ -32,47 +33,38 @@ public class Runner {
 			default:
 				flag = true;
 			}
-//			
-//			if (scanner.nextLine().length() == 0) {
-//				num = 7;
-//			} else if ()
-//			
-//			if (num > 0 && num < 6) {
-//				subMenuHelper(num);
-//			} else if (num == 6) {
-//				flag = false;
-//			} else if (num == 7) {
-//				flag = true;
-//			}
-		} 
+		} while (flag);
 		System.out.println("Exiting program");
 		scanner.close();
+		
+		
 	}
 	
-	static void subMenuHelper(int num) {
+	
+	static void subMenuHelper(String str) throws InputMismatchException {
 		String operator = "";
 		String input2 = "";
 		int num1;
 		int num2;
 		boolean flag = true;
-			switch(num) {
-			case 1:
+			switch(str) {
+			case "1":
 				operator = "+";
 				input2 = "Enter a number to add to it";
 				break;
-			case 2:
+			case "2":
 				operator = "-";
 				input2 = "Enter a number to subtract from it";
 				break;
-			case 3:
+			case "3":
 				operator = "*";
 				input2 = "Enter a number to multiply it by";
 				break;
-			case 4:
+			case "4":
 				operator = "/";
 				input2 = "Enter a number to divide it by";
 				break;
-			case 5:
+			case "5":
 				operator = "%";
 				input2 = "Enter a number to find the modulus";
 				break;
@@ -82,25 +74,31 @@ public class Runner {
 			}
 			
 			System.out.println("Enter a number");
+			if (parser(scanner.nextLine()) == "---***---***thereisnonumberhere***---***---") {
+				throw new InputMismatchException("You must enter a valid number!");
+			}
 			num1 = Integer.parseInt(scanner.nextLine());
 			System.out.println(input2);
+			if (parser(scanner.nextLine()) == "---***---***thereisnonumberhere***---***---") {
+				throw new InputMismatchException("You must enter a valid number!");
+			}
 			num2 = Integer.parseInt(scanner.nextLine());
 			double answer;
 			
-			switch(num) {
-			case 1:
+			switch(str) {
+			case "1":
 				answer = Calculator.add(num1, num2);
 				break;
-			case 2:
+			case "2":
 				answer = Calculator.subract(num1, num2);
 				break;
-			case 3:
+			case "3":
 				answer = Calculator.multiply(num1, num2);
 				break;
-			case 4:
+			case "4":
 				answer = Calculator.divide(num1, num2);
 				break;
-			case 5:
+			case "5":
 				answer = Calculator.mod(num1, num2);
 				break;
 			default:
@@ -109,5 +107,15 @@ public class Runner {
 			
 			System.out.println(num1 + " " + operator + " " + num2 + "\n= " + answer);
 			System.out.println(" ");
+	
 	}
+	
+	public static String parser(String toParse) {
+	    try {
+	        return Integer.parseInt(toParse) + "";
+	    } catch (NumberFormatException e) {
+	        return "---***---***thereisnonumberhere***---***---";
+	    }
+	}
+	
 }
